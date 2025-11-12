@@ -21,6 +21,10 @@ func _process(delta: float) -> void:
 	var steering := desired_velocity - velocity
 	velocity += steering * steering_factor * delta
 	position += velocity * delta
+	
+	var viewport_size := get_viewport_rect().size
+	position.x = wrapf(position.x, 0,viewport_size.x)
+	position.y = wrapf(position.y, 0, viewport_size.y)
 
 	if velocity.length() > 0.0:
 		#rotation = velocity.angle()
